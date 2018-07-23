@@ -1,0 +1,91 @@
+<div class="row">
+
+  <div class="col-sm-12">
+    <app-bar-menu></app-bar-menu>
+  </div>
+
+  <div class="col-sm-12">
+    <h3 style="text-align: center">SELECCION DE TRANSFERENCIA</h3>
+  </div>
+
+</div>
+
+<br>
+
+<div class="row" style="margin-left: 20px">
+
+  <div class="col-sm-2">
+    <h5 style="padding-left: 80px">Usuario</h5>
+    <div class="col-sm-2" style="margin-right: 20px; margin-top: 20px">
+      <div class="card" style="width: 200px;">
+        <img class="card-img-top" src={{usuario.imagen}} alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center">{{usuario.username}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Apellidos: {{usuario.nombre}}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">Apellidos: {{usuario.apellido}}</h6>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-sm-2"></div>
+
+  <div class="col-sm-4">
+    <h5 style="padding-left: 70px">Item de Petición</h5>
+    <div class="col-sm-2" *ngFor="let info of transferencia" style="margin-right: 20px; margin-top: 20px">
+      <div class="card" style="width: 250px">
+        <img class="card-img-top" src={{info.imagen}} alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">{{info.nombre}}</h4>
+          <h6>Sinopsis: {{info.sinopsis}}</h6>
+          <h6>Fecha de Lanzamiento: {{info.anioLanzamiento}}</h6>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-sm-2"></div>
+
+</div>
+
+<br>
+
+<div class="row">
+
+  <div class="col-sm-12" style="padding-left: 65px">
+    <h4>Peliculas:</h4>
+  </div>
+
+</div>
+
+<div class="row" style="margin-left: 20px">
+
+  <div class="col-sm-2" *ngFor="let info of arregloPeliculas"
+       style="padding-left: 30px; margin-right: 100px; margin-top: 20px">
+    <div class="card" style="width: 250px">
+      <img class="card-img-top" src={{info.imagen}} alt="Card image cap" style="height: 20rem; width: 15.5rem">
+      <div class="card-body">
+        <h4 class="card-title" style="text-align: center">{{info.nombre}}</h4>
+        <h6>Sinopsis: {{info.sinopsis}}</h6>
+        <h6>Fecha de Lanzamiento: {{info.anioLanzamiento}}</h6>
+        <br>
+        <p class="card-text" *ngIf="!info.estado">
+          <small class="text-muted">En Espera de Transferencia</small>
+        </p>
+        <button type="button" *ngIf="info.estado" type="button" (click)="transferir(info.id); validarCookie()"
+                class="btn btn-primary">Selecionar Transferencia
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="col-sm-1"></div>
+
+  </div>
+
+</div>

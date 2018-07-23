@@ -1,0 +1,28 @@
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <form [formGroup]="formCabecera" id="formCabecera" class="example-form" #cabecera="ngForm" (ngSubmit)="agregarDatos(cabecera)" xmlns="" novalidate>
+
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" matInput placeholder="Nombre" formControlName="nombre">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" matInput placeholder="Apellido" formControlName="apellido">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" matInput placeholder="Direccion" formControlName="direccion">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" matInput placeholder="Correo" formControlName="correo">
+        </div>
+      </div>
+      <br>
+          <button type="submit" [disabled]="formCabecera.invalid" mat-raised-button color="primary" style="width: 50%; margin-left: 25%; margin-top: 10px">Guardar</button>
+
+
+    </form>
+  </div>
+</div>

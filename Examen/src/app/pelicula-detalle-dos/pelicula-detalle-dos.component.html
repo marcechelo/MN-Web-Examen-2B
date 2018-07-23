@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-sm-12">
+
+    <app-bar-menu></app-bar-menu>
+
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-sm-12">
+
+    <h2 style="padding-left: 40px">Pelicula</h2>
+
+  </div>
+
+</div>
+
+<div id="disponible" class="row" style="margin-left: 20px">
+
+  <div class="col-sm-2"></div>
+
+
+  <div class="col-sm-3">
+
+
+    <div class="card" align="center" style="width: 250px">
+      <img class="card-img-top" src="{{peliculaDetalle.imagen}}" alt="Card image cap">
+      <div class="card-body">
+        <h6>{{estadoUno}}</h6>
+      </div>
+      <button id="botonAgregarCarrito" type="button" (click)="agregarDatos(peliculaDetalle.id)"
+              [routerLink]="['/seleccionTransferencia']" class="btn btn-primary">Transferir
+      </button>
+
+
+    </div>
+
+
+  </div>
+
+  <div class="col-sm-4">
+
+    <div class="card">
+      <div class="card-body">
+
+        <h1 class="card-title">{{peliculaDetalle.nombre}}</h1>
+        <br>
+        <h6>Año Lanzamienot: {{peliculaDetalle.anioLanzamiento}}</h6>
+        <h6>Rating: {{peliculaDetalle.rating}}</h6>
+        <h6>Actores Principales: {{peliculaDetalle.actoresPrincipales}}</h6>
+        <h6>Sinopsis: {{peliculaDetalle.sinopsis}}</h6>
+        <h6>Año Precio: {{peliculaDetalle.precio}}</h6>
+
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="col-sm-2"></div>
+
+</div>

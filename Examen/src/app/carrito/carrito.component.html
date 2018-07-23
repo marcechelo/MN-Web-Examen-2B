@@ -1,0 +1,219 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-bar-menu></app-bar-menu>
+  </div>
+  <br>
+  <div class="col-sm-12" STYLE="text-align: center">
+    <h2>PERFIL</h2>
+  </div>
+</div>
+
+<br>
+<br>
+
+<div class="row" style="margin-left: 30px">
+
+  <div class="col-sm-12">
+    <h4 style="padding-left: 60px">Usuario</h4>
+    <div class="card" style="width: 200px">
+      <img class="card-img-top" src={{usuario.imagen}} alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title" style="text-align: center">{{usuario.username}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Nombre: {{usuario.nombre}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Apellidos: {{usuario.apellido}}</h6>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-sm-12" style="text-align: center">
+    <br>
+    <h2 style="padding-left: 40px">PETICIONES</h2>
+  </div>
+</div>
+
+<h3 style="padding-left: 50px">Peticiones en Espera</h3>
+<br>
+
+<div class="row" style="margin-left: 30px">
+
+
+  <div class="col-sm-12" *ngFor="let info of peticionesEnEspera">
+
+    <div class="barColor"></div>
+    <br>
+    <div class="row">
+
+      <div class="col-sm-2"></div>
+
+      <div class="col-sm-3">
+
+        <div class="card" style="width: 250px" >
+          <div class="card-body">
+            <h5 class="card-subtitle" style="text-align: center">{{info.usuario.nombre}} {{info.usuario.apellido}}</h5>
+            <h5 class="card-subtitle"></h5>
+          </div>
+          <img class="card-img-bottom" style="height: 100px;width: 200px; padding-left: 50px" src="{{info.usuario.imagen}}" alt="Card image cap">
+        </div>
+
+      </div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-3">
+        <h2 style="color: yellow;padding-top: 20px; padding-left: 100px">EN</h2>
+        <h2 style="color: yellow;padding-top: 20px; padding-left: 70px">ESPERA</h2>
+      </div>
+
+      <div class="col-sm-2"></div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+
+      <div class="col-sm-2"></div>
+
+      <div class="col-sm-3">
+
+        <div class="card" style="width: 250px">
+          <img class="card-img-top" src={{info.idPeliculaCambio[0].imagen}} alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">{{info.idPeliculaCambio[0].nombre}}</h4>
+            <h6>Sinopsis: {{info.idPeliculaCambio[0].sinopsis}}</h6>
+            <h6>Fecha de Lanzamiento: {{info.idPeliculaCambio[0].anioLanzamiento}}</h6>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-2">
+        <img src="https://image.flaticon.com/icons/svg/34/34495.svg" style="height: 200px; padding-left: 30px; padding-top: 100px" alt="flechas">
+      </div>
+      <div class="col-sm-3">
+
+        <div class="card" style="width: 250px">
+          <img class="card-img-top" src={{info.idPeliculaSolicitada[0].imagen}} alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">{{info.idPeliculaSolicitada[0].nombre}}</h4>
+            <h6>Sinopsis: {{info.idPeliculaSolicitada[0].sinopsis}}</h6>
+            <h6>Fecha de Lanzamiento: {{info.idPeliculaSolicitada[0].anioLanzamiento}}</h6>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <div class="col-sm-2"></div>
+
+    </div>
+
+    <br>
+
+
+  </div>
+
+</div>
+
+<h3 style="padding-left: 50px">Peticiones por Confirmar</h3>
+<br>
+
+
+<div class="row" style="margin-left: 30px">
+
+
+  <div class="col-sm-12" *ngFor="let info of peticionesConfirmar">
+
+    <div class="barColor"></div>
+    <br>
+    <div class="row">
+
+      <div class="col-sm-2"></div>
+
+      <div class="col-sm-3">
+        <div style="padding-top: 20px; padding-left: 80px">
+          <button type="button" class="btn btn-success" (click)="aceptar(
+          info.id,
+          info.idPeliculaSolicitada[0].actor,
+          info.idPeliculaCambio[0].actor,
+          info.idPeliculaSolicitada[0].id,
+          info.idPeliculaCambio[0].id)">
+            Aceptar
+          </button>
+        </div>
+        <br>
+        <div style="padding-top: 20px; padding-left: 75px">
+          <button type="button" class="btn btn-danger" (click)="rechazar(info.id, info.idPeliculaSolicitada[0].id, info.idPeliculaCambio[0].id)">Rechazar</button>
+        </div>
+      </div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-3">
+
+        <div class="card" style="width: 250px" >
+          <div class="card-body">
+            <h5 class="card-subtitle" style="text-align: center">{{info.usuario.nombre}} {{info.usuario.apellido}}</h5>
+            <h5 class="card-subtitle"></h5>
+          </div>
+          <img class="card-img-bottom" style="height: 100px;width: 200px; padding-left: 50px" src="{{info.usuario.imagen}}" alt="Card image cap">
+        </div>
+
+      </div>
+
+      <div class="col-sm-2"></div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+
+      <div class="col-sm-2"></div>
+
+      <div class="col-sm-3">
+
+        <div class="card" style="width: 250px">
+          <img class="card-img-top" src={{info.idPeliculaSolicitada[0].imagen}} alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">{{info.idPeliculaSolicitada[0].nombre}}</h4>
+            <h6>Sinopsis: {{info.idPeliculaSolicitada[0].sinopsis}}</h6>
+            <h6>Fecha de Lanzamiento: {{info.idPeliculaSolicitada[0].anioLanzamiento}}</h6>
+
+          </div>
+
+        </div>
+
+
+      </div>
+      <div class="col-sm-2">
+        <img src="https://image.flaticon.com/icons/svg/34/34495.svg" style="height: 200px; padding-left: 30px; padding-top: 100px" alt="flechas">
+      </div>
+      <div class="col-sm-3">
+
+        <div class="card" style="width: 250px">
+          <img class="card-img-top" src={{info.idPeliculaCambio[0].imagen}} alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">{{info.idPeliculaCambio[0].nombre}}</h4>
+            <h6>Sinopsis: {{info.idPeliculaCambio[0].sinopsis}}</h6>
+            <h6>Fecha de Lanzamiento: {{info.idPeliculaCambio[0].anioLanzamiento}}</h6>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-2"></div>
+
+    </div>
+
+    <br>
+
+
+  </div>
+
+</div>

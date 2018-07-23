@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-bar-menu></app-bar-menu>
+  </div>
+
+
+</div>
+<div class="row">
+
+  <div class="col-sm-4" style="padding-left: 70px">
+    <br>
+    <h2 style="padding-left: 40px">Usuario</h2>
+  </div>
+
+  <div class="col-sm-2"></div>
+
+  <div class="col-sm-4" style="padding-left: 100px">
+    <br>
+    <h2 style="padding-left: 40px">Actor</h2>
+  </div>
+
+  <div class="col-sm-2"></div>
+
+
+</div>
+
+<div class="row" style="margin-left: 20px; margin-top: 20px">
+  <!--<div class="col-sm-2" *ngFor="let info of usuarioDetalle; let indice = index">
+    <div class="card" style="width: 500px;">
+      <div class="card-body">
+        <h5 class="card-title">{{info.nombres}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Apellidos: {{info.apellidos}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Fecha de Nacimiento: {{info.fechaNacimiento}}</h6>
+        <img src={{info.foto}} alt="Card image cap">
+      </div>
+    </div>
+  </div>-->
+
+
+  <div class="col-sm-4">
+
+    <div class="col-sm-2" style="margin-right: 20px; margin-top: 20px">
+      <div class="card" style="width: 200px;">
+        <img class="card-img-top" src={{usuarioFoto}} alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center">{{usuario.nombre}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Apellidos: {{usuario.apellido}}</h6>
+          <!--<button type="button" [routerLink]="['/usuario', info.id]" (click)="datosPelicula()" class="btn btn-primary">Detalle</button>-->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-sm-2"></div>
+
+  <div class="col-sm-4" *ngFor="let info of actorDetalle; let indice = index">
+    <div class="card" style="width: 300px;">
+      <img class="card-img-top" src={{info.foto}} alt="Card image cap">
+      <div class="card-body">
+        <h3 class="card-title">{{info.nombres}}</h3>
+        <br>
+        <h6 class="card-subtitle mb-2 text-muted">Apellidos: {{info.apellidos}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Fecha de Nacimiento: {{info.fechaNacimiento}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Numero de Peliculas: {{info.numeroPeliculas}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Retirado: {{retirado}}</h6>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-sm-2"></div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-sm-12">
+
+    <app-pelicula-detalle [peliculas]="datosHijos"></app-pelicula-detalle>
+
+  </div>
+
+</div>
