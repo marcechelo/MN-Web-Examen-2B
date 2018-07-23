@@ -77,10 +77,6 @@ export class HomeComponent implements OnInit {
         );
         const botonPeliculaSiguiente = <HTMLFormElement>document.getElementById('peliculaSiguiente');
         botonPeliculaSiguiente.style.display = 'block';
-        const botonPeliculaAnterior = <HTMLFormElement>document.getElementById('peliculaAnterior');
-        botonPeliculaAnterior.style.display = 'block';
-
-        this.contadorCuatro += 4;
 
       } else {
         this.Peliculas = data;
@@ -140,26 +136,36 @@ export class HomeComponent implements OnInit {
 
   mostrarMas() {
 
-    this.ocultarElementos();
+    this.contadorCuatro += 4;
 
     this.httpClient2.get(`http://localhost:1337/buscarPeliculas/${this.buscar}/limite/${this.contadorCuatro}`).subscribe((data: any[]) => {
         this.Peliculas = data;
 
-      
+        if (this.Peliculas.length < 4) {
+          const botonPeliculaSiguiente = <HTMLFormElement>document.getElementById('peliculaSiguiente');
+          botonPeliculaSiguiente.style.display = 'none';
+        }
 
       this.mandarDatos();
       this.mostrarElementos();
       }
     );
 
-    this.contadorCuatro += 4;
+    // this.contadorCuatro += 4;
+
+    const botonPeliculaAnterior = <HTMLFormElement>document.getElementById('peliculaAnterior');
+    botonPeliculaAnterior.style.display = 'block';
 
   }
 
   mostrarAnteriores() {
 
-    this.ocultarElementos();
     this.contadorCuatro -= 4;
+
+    if (this.contadorCuatro === 0) {
+      const botonPeliculaAnterior = <HTMLFormElement>document.getElementById('peliculaAnterior');
+      botonPeliculaAnterior.style.display = 'none';
+    }
 
     this.httpClient2.get(`http://localhost:1337/buscarPeliculas/${this.buscar}/limite/${this.contadorCuatro}`).subscribe((data: any[]) => {
         this.Peliculas = data;
