@@ -145,10 +145,7 @@ export class HomeComponent implements OnInit {
     this.httpClient2.get(`http://localhost:1337/buscarPeliculas/${this.buscar}/limite/${this.contadorCuatro}`).subscribe((data: any[]) => {
         this.Peliculas = data;
 
-      if (this.Peliculas.length <= 4) {
-        const botonPeliculaSiguiente2 = <HTMLFormElement>document.getElementById('peliculaSiguiente');
-        botonPeliculaSiguiente2.style.display = 'none';
-      } else { console.log(''); }
+      
 
       this.mandarDatos();
       this.mostrarElementos();
