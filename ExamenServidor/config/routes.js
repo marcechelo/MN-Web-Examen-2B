@@ -16,10 +16,12 @@ module.exports.routes = {
 
   'GET /hello': 'LoginController.helloworld',
 
-  'GET /buscarPeliculas/:parametros': 'BusquedaController.buscarPelicula',
+  'GET /buscarPeliculas/:buscar/limite/:numero': 'BusquedaController.buscarPelicula',
 
-  'GET /buscarActores/:parametros': 'BusquedaController.buscarActor',
+  'GET /buscarActores/:buscar/limite/:numero': 'BusquedaController.buscarActor',
 
-  'GET /buscarUsuarios/:parametros': 'BusquedaController.buscarUsuario',
+  'GET /buscarUsuarios/:buscar/limite/:numero': 'BusquedaController.buscarUsuario',
+
+  'GET /buscarPeliculaTodo/:parametros': 'BusquedaController.buscarPeliculaTodo',
 
 };

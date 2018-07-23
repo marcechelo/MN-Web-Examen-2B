@@ -31,6 +31,7 @@
 
     <app-usuario [resultadosDesa]="Usuarios"></app-usuario>
 
+
   </div>
 
   <div class="col-sm-12">
@@ -41,10 +42,31 @@
 
   <div class="col-sm-12">
 
-    <app-pelicula-detalle [peliculas]="Peliculas"></app-pelicula-detalle>
+    <div class="row">
+
+      <div class="col-sm-12">
+
+        <app-pelicula-detalle [peliculas]="Peliculas"></app-pelicula-detalle>
+
+      </div>
+
+      <div class="col-sm-12">
+        <br>
+        <div class="row">
+
+          <div class="col-sm-6" style="padding-left: 70px"><button id="peliculaAnterior" class="btn btn-primary" (click)="mostrarAnteriores()">Anteriores</button></div>
+          <div class="col-sm-6" style="padding-left: 500px"><button id="peliculaSiguiente" class="btn btn-primary" (click)="mostrarMas()">Siguientes</button></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
 
   </div>
 
 
-
 </div>
+

@@ -18,12 +18,19 @@ export class HomeComponent implements OnInit {
   Usuarios = [];
   data = {};
 
+  contadorCuatro = 0;
+  contadorDos = 0;
+
   constructor(private httpClient: HttpClient,
               private httpClient2: HttpClient,
               private httpClient3: HttpClient,
               private _actorServicio: ActorService,
               private _router: Router,
               private _credenciales: CredencialesService) {
+
+    this.Actores = [];
+    this.Peliculas = [];
+    this.Usuarios = [];
 
   }
 
@@ -37,6 +44,8 @@ export class HomeComponent implements OnInit {
     this._actorServicio.mensajeActual2.subscribe(mensaje => this.Peliculas = mensaje);
     this._actorServicio.mensajeActualUsuario.subscribe(mensaje => this.Usuarios = mensaje);
     this.ocultarElementos();
+    this.ocultarBotones();
+
   }
 
   onNameKeyUp(event: any) {
@@ -44,17 +53,42 @@ export class HomeComponent implements OnInit {
   }
 
   getProfile() {
-    this.httpClient.get(`http://localhost:1337/buscarActores/${this.buscar}`).subscribe((data: any[]) => {
+    this.httpClient.get(`http://localhost:1337/buscarActores/${this.buscar}/limite/${this.contadorDos}`).subscribe((data: any[]) => {
         this.Actores = data;
       }
     );
 
-    this.httpClient2.get(`http://localhost:1337/buscarPeliculas/${this.buscar}`).subscribe((data: any[]) => {
+    /*this.httpClient2.get(`http://localhost:1337/buscarPeliculas/${this.buscar}/limite/${this.contadorCuatro}`)
+    .subscribe((data: any[]) => {
         this.Peliculas = data;
+      }
+    );*/
+
+    this.httpClient2.get(`http://localhost:1337/buscarPeliculaTodo/${this.buscar}`).subscribe((data: any[]) => {
+        const peliculasAux = data;
+        // this.Peliculas = data;
+
+      if (peliculasAux.length > 4) {
+
+        this.httpClient2.get(`http://localhost:1337/buscarPeliculas/${this.buscar}/limite/${this.contadorCuatro}`)
+          .subscribe((data2: any[]) => {
+            this.Peliculas = data2;
+          }
+        );
+        const botonPeliculaSiguiente = <HTMLFormElement>document.getElementById('peliculaSiguiente');
+        botonPeliculaSiguiente.style.display = 'block';
+        const botonPeliculaAnterior = <HTMLFormElement>document.getElementById('peliculaAnterior');
+        botonPeliculaAnterior.style.display = 'block';
+
+        this.contadorCuatro += 4;
+
+      } else {
+        this.Peliculas = data;
+      }
       }
     );
 
-    this.httpClient3.get(`http://localhost:1337/buscarUsuarios/${this.buscar}`).subscribe((data: any[]) => {
+    this.httpClient3.get(`http://localhost:1337/buscarUsuarios/${this.buscar}/limite/${this.contadorCuatro}`).subscribe((data: any[]) => {
         this.Usuarios = data;
       }
     );
@@ -94,6 +128,51 @@ export class HomeComponent implements OnInit {
     const mostrarLabelUsuario = <HTMLFormElement>document.getElementById('usuario');
     mostrarLabelUsuario.style.display = 'none';
 
+  }
+
+  ocultarBotones() {
+    const botonPeliculaSiguiente = <HTMLFormElement>document.getElementById('peliculaSiguiente');
+    botonPeliculaSiguiente.style.display = 'none';
+
+    const botonPeliculaAnterior = <HTMLFormElement>document.getElementById('peliculaAnterior');
+    botonPeliculaAnterior.style.display = 'none';
+  }
+
+  mostrarMas() {
+
+    this.ocultarElementos();
+
+    this.httpClient2.get(`http://localhost:1337/buscarPeliculas/${this.buscar}/limite/${this.contadorCuatro}`).subscribe((data: any[]) => {
+        this.Peliculas = data;
+
+      if (this.Peliculas.length <= 4) {
+        const botonPeliculaSiguiente2 = <HTMLFormElement>document.getElementById('peliculaSiguiente');
+        botonPeliculaSiguiente2.style.display = 'none';
+      } else { console.log(''); }
+
+      this.mandarDatos();
+      this.mostrarElementos();
+      }
+    );
+
+    this.contadorCuatro += 4;
+
+  }
+
+  mostrarAnteriores() {
+
+    this.ocultarElementos();
+    this.contadorCuatro -= 4;
+
+    this.httpClient2.get(`http://localhost:1337/buscarPeliculas/${this.buscar}/limite/${this.contadorCuatro}`).subscribe((data: any[]) => {
+        this.Peliculas = data;
+
+        this.mandarDatos();
+        this.mostrarElementos();
+      }
+    );
+    const botonPeliculaSiguiente = <HTMLFormElement>document.getElementById('peliculaSiguiente');
+    botonPeliculaSiguiente.style.display = 'block';
   }
 
 }
